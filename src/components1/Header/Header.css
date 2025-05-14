@@ -1,0 +1,174 @@
+/* Default Navbar Height (for larger screens) */
+.navbar {
+  height: 70px;
+  /* Fixed height for large screens */
+}
+
+.nav-icons i {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.nav-sticky {
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+}
+
+.navbar-item a {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-logo img {
+  height: 90px;
+}
+
+/* For large desktops and above (1200px and up) */
+@media (min-width: 1200px) {
+  .navbar {
+    height: 70px;
+  }
+}
+
+/* For medium screens (laptops and medium desktops: 992px to 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .navbar {
+    height: 70px;
+  }
+}
+
+/* For tablets (small screens: 768px to 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    top: -15px;
+    transform: translateX(-50%);
+    /* Center logo horizontally */
+  }
+
+  .nav-icons {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+  }
+
+  .navbar {
+    height: auto;
+    /* Allow navbar height to adjust based on content */
+  }
+
+  .nav-icons i {
+    font-size: 20px;
+  }
+}
+
+/* For mobile (portrait mode: 576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    top: -15px;
+  }
+
+  .nav-icons {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+
+  .nav-icons i {
+    font-size: 14px;
+    margin-right: 8px;
+  }
+
+  .navbar {
+    height: auto;
+    /* Allow navbar height to adjust based on content */
+  }
+}
+
+/* For extra small devices (mobile devices: below 576px) */
+@media (max-width: 576px) {
+  .nav-logo {
+    position: absolute;
+    left: 40%;
+    top: -15px;
+  }
+
+  .nav-icons {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+  }
+
+  .nav-icons i {
+    font-size: 12px;
+    margin-right: 5px;
+  }
+
+  .navbar {
+    height: auto;
+    /* Allow navbar height to adjust based on content */
+  }
+}
+
+/* For very small devices (extremely small screens: below 400px) */
+@media (max-width: 400px) {
+  .nav-logo {
+    position: absolute;
+    left: 40%;
+    top: -15px;
+  }
+
+  .nav-icons i {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+
+  .navbar {
+    height: auto;
+    /* Allow navbar height to adjust based on content */
+  }
+}
+
+
+/* home.js css */
+.item-types-div {
+  position: relative;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.item-types {
+  position: absolute;
+  top: 50%;
+  left: 42%;
+  color: white;
+
+}
+
+.footer-icon i,
+.footer-icon h6 {
+  color: white;
+}
+
+.footer ul li {
+  list-style: none;
+}
+
+.footer h6 {
+  font-size: 20px;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0px;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: blue;
+  color: white;
+}
