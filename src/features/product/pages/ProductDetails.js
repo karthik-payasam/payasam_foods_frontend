@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useCartContext } from '../../cart/context/CartContext';
-
+import apiList, { ApiEndPoint } from '../../../Api/Api_Calls'
 function ProductDetails() {
     const paramData = useParams();
     const location = useLocation();
@@ -22,7 +22,7 @@ function ProductDetails() {
     useEffect(() => {
         const ProductDetails = async () => {
             try {
-                const response = await axios.get("http://localhost:9090/user/api/fetch/ProductData", {
+                const response = await axios.get(apiList.ProductData, {
                     params: {
                         product_id: paramData.id
                     }
@@ -137,7 +137,7 @@ function ProductDetails() {
                         const key = `${product.product_id}-${selectedWeight.weight_id}`
                         return (<div className='row'>
                             <div className='col-12 col-sm-12 col-md-5 col-lg-5'>
-                                <img src={`http://localhost:9090/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
+                                <img src={`${ApiEndPoint}/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
 
                             </div>
                             <div className='col-12 col-sm-12 col-md-5 col-lg-5 mt-3 ms-5'>
@@ -222,7 +222,7 @@ function ProductDetails() {
                                                             return (
                                                                 <div className='row text-center'>
                                                                     <div className='col-2 col-sm-2 col-md-2 col-lg-2'>
-                                                                        <img src={`http://localhost:9090/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
+                                                                        <img src={`${ApiEndPoint}/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
                                                                     </div>
                                                                     <div className='col-2 col-sm-2 col-md-2 col-lg-2'>
                                                                         <p>{product.product_name}</p>

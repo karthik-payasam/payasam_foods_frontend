@@ -14,7 +14,6 @@ import AccountDetails from '../features/account/pages/AccountDetails'
 import Search from '../features/product/pages/Search'
 import Cart from '../features/cart/pages/Cart'
 import OtpUi from '../features/auth/pages/OtpUI'
-
 import OrderConfirmPage from '../features/product/pages/OrderConfirmPage'
 import NotFound from './NotFound'
 import Checkout from '../features/cart/pages/Checkout'
@@ -25,7 +24,6 @@ import Checkout from '../features/cart/pages/Checkout'
 
 
 function Routing() {
-
 
   return (
     <div>

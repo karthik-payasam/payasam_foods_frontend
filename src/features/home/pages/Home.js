@@ -16,6 +16,7 @@ import zommatologo from '../../../assets/images/zommatologo.jpg'
 
 import swiggyinstamartlogo from '../../../assets/images/swiggyinstamartlogo.jpg'
 import { Link, useNavigate } from 'react-router-dom'
+import apiList, { ApiEndPoint } from '../../../Api/Api_Calls'
 import axios from 'axios'
 function Home() {
     const [categories, setCategories] = useState([]);
@@ -26,7 +27,7 @@ function Home() {
     useEffect(() => {
         const fetchCategoryData = async () => {
             try {
-                const response = await axios.get("http://localhost:9090/user/api/getCategoryDetails");
+                const response = await axios.get(apiList.getCategoryDetails);
                 setCategories(response.data.categoryDataDetails);
             } catch (error) {
                 console.error("Error fetching category details:", error);
@@ -74,7 +75,7 @@ function Home() {
                     <div className='row' key={index}>
                         {chunk.map((category, i) => (
                             <div key={i} className='col-12 col-sm-12 col-md-4 col-lg-4 item-types-div' onClick={() => { handleclick(`/category/${category.category_id}/${category.name}`) }}>
-                                <img src={`http://localhost:9090/${category.image_url}`} alt={category.name} style={{ width: "100%", height: "auto" }} />
+                                <img src={`${ApiEndPoint}/${category.image_url}`} alt={category.name} style={{ width: "100%", height: "auto" }} />
                                 <button className='btn btn-dark item-types'>{category.name}</button>
                             </div>
                         ))}

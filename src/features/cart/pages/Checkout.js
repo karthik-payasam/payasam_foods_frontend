@@ -6,6 +6,7 @@ import credicard_image from '../../../assets/images/creditcard_image.png';
 import { useNavigate } from 'react-router-dom';
 import { order_user_validation } from '../../auth/validation/validation';
 import axios from 'axios';
+import apiList, { ApiEndPoint } from '../../../Api/Api_Calls'
 function Checkout() {
     const [formDetails, setFormDetails] = useState({ country: "", firstname: "", lastname: "", address: "", appartment: "", city: "", state: "", pincode: "", phonenumber: "" })
     const [shippingDetails, setShippingDetails] = useState({ country: "", firstname: "", lastname: "", address: "", appartment: "", city: "", state: "", pincode: "", phonenumber: "" })
@@ -85,7 +86,7 @@ function Checkout() {
             amount: amount * 100,//iam giving the 100 here because when we are giving the any amount razor pay takes the paise way 100paisa=1upess so iam multiple the 100.
             currency: "INR"
         };
-        const response = await axios.post("http://localhost:9090/user/api/ordersData", data, {
+        const response = await axios.post(apiList.ordersData, data, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -124,7 +125,7 @@ function Checkout() {
                 const paymentId = response.razorpay_payment_id
                 try {
                     const token = localStorage.getItem("ProfileData")
-                    const response = await axios.post("http://localhost:9090/user/api/createOrder", params, { headers: { Authorization: `Bearer ${token}` } })
+                    const response = await axios.post(apiList.createOrder, params, { headers: { Authorization: `Bearer ${token}` } })
                     console.log("Order Created Successfully", response.data);
                     console.log("paymentId2", paymentId)
                     navigate(`/orderStatus/${paymentId}/${response.data.order_id}`);
@@ -284,7 +285,7 @@ function Checkout() {
                             {console.log("cartProduct", product)}
                             <div className='row text-center m-4'>
                                 <div className='col-3 col-sm-3 col-md-3 col-lg-3' style={{ position: "relative" }}>
-                                    <img src={`http://localhost:9090/${product.product_image}`} alt={product.product_name} style={{ width: "100%" }} />
+                                    <img src={`${ApiEndPoint}/${product.product_image}`} alt={product.product_name} style={{ width: "100%" }} />
                                     <p style={{ border: "2px solid", borderRadius: "50%", width: "20px", position: "absolute", top: "-20px", backgroundColor: "black", color: "white", right: "10px" }}>{product.qty}</p>
                                 </div>
 

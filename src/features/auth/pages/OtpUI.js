@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-
+import apiList from '../../../Api/Api_Calls'
 function OtpUi(props) {
     const { setLogin } = useAuthContext();
     const [error, setError] = useState('');
@@ -26,7 +26,7 @@ function OtpUi(props) {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:9090/user/api/basedonEmailOtp", {
+            const response = await axios.post(apiList.otp, {
                 email,
                 otp: otpData
             });
@@ -45,7 +45,7 @@ function OtpUi(props) {
     }
     const handleResendOtp = async (email) => {
         try {
-            const response = await axios.put("http://localhost:9090/user/api/resendOtp", {
+            const response = await axios.put(apiList.resendOtp, {
                 email,
             });
             console.log("updated data Details...", response.data);

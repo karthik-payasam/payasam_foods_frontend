@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import apiList, { ApiEndPoint } from '../../../Api/Api_Calls'
 function Search() {
     const [itemName, setItemName] = useState("");
     const [product, setProduct] = useState("");
@@ -10,7 +10,7 @@ function Search() {
         e.preventDefault();
         console.log("e", e)
         try {
-            const response = await axios.get("http://localhost:9090/user/api/searchItems", { params: { product_name: itemName } })
+            const response = await axios.get(apiList.searchItems, { params: { product_name: itemName } })
             console.log("responseserach", response.data.productData);
             setProduct(response.data.productData);
             setData(true);
@@ -42,7 +42,7 @@ function Search() {
 
 
                         <div className='col-3 col-sm-3 col-md-3 col-lg-3 mt-3 mb-3'>
-                            <Link to={`/productDetails/${productData.product_id}`}>   <img src={`http://localhost:9090/${productData.product_image}`} style={{ width: "100%", height: "auto" }} /></Link>
+                            <Link to={`/productDetails/${productData.product_id}`}>   <img src={`${ApiEndPoint}/${productData.product_image}`} style={{ width: "100%", height: "auto" }} /></Link>
                             <b className='text-center d-block'>{productData.product_name}</b>
                             <b className='text-center d-block'>Rs:{productData.weights[0].price}</b>
                         </div>

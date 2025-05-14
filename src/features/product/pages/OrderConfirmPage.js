@@ -3,7 +3,7 @@ import sucessImage from '../../../assets/images/sucess-image.png'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useCartContext } from '../../cart/context/CartContext'
-
+import apiList, { ApiEndPoint } from '../../../Api/Api_Calls'
 function OrderConfirmPage() {
     const navigate = useNavigate();
     const params = useParams()
@@ -13,12 +13,12 @@ function OrderConfirmPage() {
     useEffect(() => {
 
         const FetchPaymentDetails = async () => {
-            const response = await axios.get(`http://localhost:9090/user/api/payment/${params.paymentId}`)
+            const response = await axios.get(`${apiList.paymentDetails}/${params.paymentId}`)
             if (response.status == 200) {
                 console.log("payamentResponse", response.data);
                 dispatch({ type: 'ADD_CART', products: [] })
                 setPaymentDetails(response.data);
-                const responseData = await axios.get(`http://localhost:9090/user/api/order_Details/${params.order_id}`)
+                const responseData = await axios.get(`${apiList.order_Details}/${params.order_id}`)
                 if (responseData.status == 200) {
 
                     console.log("total order detailss are", responseData.data.OrderData)
@@ -84,7 +84,7 @@ function OrderConfirmPage() {
                             <div className='row'>
                                 <div className='col-3 col-sm-3 col-md-3 col-lg-3 pt-3 pb-1'>
 
-                                    <Link to={`/productDetails/${details.product_id}`}>    <img src={`http://localhost:9090/${details.product_image}`} style={{ width: "100%", height: "auto" }} /></Link>
+                                    <Link to={`/productDetails/${details.product_id}`}>    <img src={`${ApiEndPoint}/${details.product_image}`} style={{ width: "100%", height: "auto" }} /></Link>
 
                                 </div>
                                 <div className='col-3 col-sm-3 col-md-3 col-lg-3 pt-3 pb-1'>

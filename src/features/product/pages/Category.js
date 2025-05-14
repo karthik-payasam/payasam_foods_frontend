@@ -2,8 +2,10 @@ import axios from 'axios'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useCartContext } from '../../cart/context/CartContext';
+import apiList, { ApiEndPoint } from '../../../Api/Api_Calls'
 
 function Category(props) {
+
     const { state: { cart }, dispatch } = useCartContext();
     const navigate = useNavigate()
     console.log("statedispatch", cart, props);
@@ -18,6 +20,10 @@ function Category(props) {
     const [selectedWeights, setSelectedWeights] = useState({});
     params['sort'] = searchParams.get('sort')
     console.log(params);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [params.id, params.sub_id])
+
 
     // const { setLogin, setRole } = useAuthContext();
     useEffect(() => {
@@ -26,7 +32,7 @@ function Category(props) {
 
 
             try {
-                const response = await axios.get("http://localhost:9090/user/api/fetch/AllproductDetailsbyCategory", { params: { category_id: params?.id, sub_category_id: params?.sub_id, sort: params?.sort } });
+                const response = await axios.get(apiList.AllproductDetailsbyCategory, { params: { category_id: params?.id, sub_category_id: params?.sub_id, sort: params?.sort } });
 
                 console.log("productData", response.data.categoryDataDetails); // Do something with the response
                 setProducts(response.data.categoryDataDetails)
@@ -135,7 +141,7 @@ function Category(props) {
                     return (<div className='col-12 col-sm-12 col-md-3 col-lg-3 mb-3'>
 
                         <Link to={`/productDetails/${product.product_id}`}>
-                            <img src={`http://localhost:9090/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
+                            <img src={`${ApiEndPoint}/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
                         </Link>
                         <h5 className='text-center'>{product.product_name}</h5>
                         <div className='text-center mb-2'>
@@ -218,7 +224,7 @@ function Category(props) {
                                                         return (
                                                             <div className='row text-center'>
                                                                 <div className='col-2 col-sm-2 col-md-2 col-lg-2'>
-                                                                    <img src={`http://localhost:9090/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
+                                                                    <img src={`${ApiEndPoint}/${product.product_image}`} style={{ width: "100%", height: "auto" }} />
                                                                 </div>
                                                                 <div className='col-2 col-sm-2 col-md-2 col-lg-2'>
                                                                     <p>{product.product_name}</p>

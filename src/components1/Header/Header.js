@@ -4,6 +4,7 @@ import './Header.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../features/auth/context/AuthContext'
 import axios from 'axios';
+import apiList from '../../Api/Api_Calls'
 import { useCartContext } from '../../features/cart/context/CartContext';
 function Header() {
   const { state: { cart } } = useCartContext();
@@ -15,7 +16,7 @@ function Header() {
   // const { setLogin, setRole } = useAuthContext();
   useEffect(() => {
     const CategoryData = async () => {
-      const response = await axios.get("http://localhost:9090/user/api/fetch/getCategoryAndSubCategories")
+      const response = await axios.get(apiList.categorySubCategoryData)
       console.log("category", response.data.CategoryData);
 
       setCategory(response.data.CategoryData);

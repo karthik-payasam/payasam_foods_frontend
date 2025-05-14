@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useAuthContext } from '../context/AuthContext';
 import { validation } from '../validation/validation';
+import apiList from '../../../Api/Api_Calls'
 function SignUp() {
     const [formData, setFormData] = useState({ first_name: "", last_name: "", phone_number: "", email: "", password: "", confirmPassword: "" })
     const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ function SignUp() {
             return;
         }
         try {
-            const response = await axios.post("http://localhost:9090/user/api/Registration", formData)
+            const response = await axios.post(apiList.registration, formData)
             console.log(response.data.token)
             if (response.status === 200) {
 

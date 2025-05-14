@@ -3,7 +3,7 @@ import LoginImage from '../../../assets/images/loginImagePage.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useAuthContext } from '../context/AuthContext'
-
+import apiList from '../../../Api/Api_Calls'
 function SignIn() {
     const [formData, setFormData] = useState({ email: "", password: "" })
     const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ function SignIn() {
         setError(null)
 
         try {
-            const response = await axios.post("http://localhost:9090/user/api/login", formData);
+            const response = await axios.post(apiList.login, formData);
             console.log(response.data.token)
 
             if (response.status === 200) {

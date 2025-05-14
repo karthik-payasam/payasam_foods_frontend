@@ -9,7 +9,7 @@ import axios from 'axios';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import ScroolingHead from '../Header/ScroolingHead';
-
+import apiList from '../../Api/Api_Calls';
 
 function Layout() {
   const { login, setLogin, setUserData } = useAuthContext();
@@ -20,7 +20,7 @@ function Layout() {
       const fetchUserData = async () => {
         try {
           const token = localStorage.getItem("ProfileData");
-          const response = await axios.get("http://localhost:9090/user/api/ProfileData", {
+          const response = await axios.get(apiList.ProfileData, {
             headers: { Authorization: `Bearer ${token}` }
           })
           console.log("AccountDetailsDara", response.data.ProfileDetails);

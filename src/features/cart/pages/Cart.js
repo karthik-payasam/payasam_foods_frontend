@@ -5,6 +5,7 @@ import deliveryIcon from '../../../assets/images/deliveryicon.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { useCartContext } from '../context/CartContext';
 import { useAuthContext } from '../../auth/context/AuthContext';
+import { ApiEndPoint } from '../../../Api/Api_Calls'
 function Cart() {
   const { state: { cart }, dispatch, qtyData, setQtyData } = useCartContext();
   const { login, setLogin } = useAuthContext();
@@ -107,7 +108,7 @@ function Cart() {
           console.log("cartProduct", product)
           return (<div className='row text-center mb-3'>
             <div className='col-2 col-sm-2 col-md-2 col-lg-2'>
-              <Link to={`/productDetails/${product.product_id}?w=${product.selectedWeight.weight_id}`}>   <img src={`http://localhost:9090/${product.product_image}`} alt={product.product_name} style={{ width: "100%" }} /></Link>
+              <Link to={`/productDetails/${product.product_id}?w=${product.selectedWeight.weight_id}`}>   <img src={`${ApiEndPoint}/${product.product_image}`} alt={product.product_name} style={{ width: "100%" }} /></Link>
               <b>{product.product_name}</b>
             </div>
             <div className='col-2 col-sm-2 col-md-2 col-lg-2'>
