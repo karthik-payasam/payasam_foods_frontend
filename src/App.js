@@ -1,5 +1,6 @@
 import React from 'react'
 import Routing from './routes/Routing'
+import AdminPage from './AdminPage/AdminPage'
 
 
 
